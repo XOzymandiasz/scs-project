@@ -58,6 +58,9 @@ func handleConnection(conn net.Conn) {
 		}
 
 		encoded, _ := protocol.Encode(response)
-		transport.Send(conn, encoded)
+		err := transport.Send(conn, encoded)
+		if err != nil {
+			return
+		}
 	}
 }
